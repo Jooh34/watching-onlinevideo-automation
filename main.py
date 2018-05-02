@@ -5,8 +5,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
-# See all video in the subject
-# input : subject element (button)
+# var
+DRIVER_PATH = 'C:/Users/mnh51/workspace/selenium/chromedriver.exe';
+user_id = '';
+user_pw = '';
+
+# close alert if it exists
 def handle_alert():
     try:
         WebDriverWait(driver, 3).until(EC.alert_is_present(),
@@ -19,6 +23,7 @@ def handle_alert():
     except TimeoutException:
         print("no alert")
 
+# See all video in the subject
 def see_Subject():
 
     listeningList = driver.find_element_by_css_selector("ul[class='listeningList']");
@@ -39,6 +44,7 @@ def see_Subject():
     time.sleep(1);
     return;
 
+#See all video in that number
 def see_Num():
     handle_alert();
     time.sleep(1);
@@ -65,13 +71,13 @@ def see_Num():
     return;
 
 
-driver = webdriver.Chrome('C:/Users/mnh51/workspace/selenium/chromedriver.exe')
+driver = webdriver.Chrome(DRIVER_PATH)
 
 driver.get("https://www.cyber.hs.kr/user/login.do")
 time.sleep(0.5)
 
-driver.find_element_by_id('userId').send_keys('');
-driver.find_element_by_id('password').send_keys('');
+driver.find_element_by_id('userId').send_keys(user_id);
+driver.find_element_by_id('password').send_keys(user_pw);
 driver.find_element_by_id('login_btn').click();
 time.sleep(3)
 
